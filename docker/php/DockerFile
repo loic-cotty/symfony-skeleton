@@ -1,0 +1,41 @@
+FROM php:8-fpm
+
+# Installer de php et des dépendances requises pour Symfony Composer et npm
+RUN apt-get update && apt-get install -y \
+    curl \
+    libzip-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libonig-dev \
+    libxml2-dev \
+    unzip \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) \
+        pdo \
+        pdo_mysql \
+        mbstring \
+        exif \
+        pcntl \
+        bcmath \
+        gd \
+        zip \
+        intl \
+        soap
+
+# Installer Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Installer le client Symfony CLI
+RUN curl -sS https://get.symfony.com/cli/installer | bash \
+    && mv /root/.symfony*/bin/symfony /usr/local/bin/symfony
+
+# Installer PHPUnit
+RUN curl -sSL https://phar.phpunit.de/phpunit.phar -o /usr/local/bin/phpunit \
+    && chmod +x /usr/local/bin/phpunit
+
+# Nettoie les fichiers temporaires pour réduire la taille de l'image
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Définit le répertoire de travail
+WORKDIR /var/www/html
