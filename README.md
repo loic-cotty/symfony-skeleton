@@ -1,6 +1,4 @@
-## 🚧 My Symfony Lab 🚧
-
-Symfony project, for my personal tech watch, around **symfony** and many other things
+## 🚧 Symfony skeleton 🚧
 
 ### Installation
 
@@ -41,17 +39,16 @@ When option is set to yes, parameter c can be add to the command to pass options
 
 List of tools and versions required to run the project
 
->
 >   - PHP version 8.3 or higher
 >   - Composer version 2.
 >   - Symfony CLI (optional)
 >   - Node.js for npm
 >   - Docker
+>   - MySQL-8
 
 
 ### Frameworks and libraries
 
->
 >   - Symfony
 >   - Webpack Encore
 >   - Tailwindcss
