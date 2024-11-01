@@ -28,3 +28,7 @@ yarn-error.log
 ###> symfony/phpunit-bridge ###
 .idea/
 ###< symfony/phpunit-bridge ###
+
+###< macOS ###
+.DS_Store
+###> macOS ###
